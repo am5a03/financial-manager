@@ -5,6 +5,9 @@ export const incomeRecordsTable = sqliteTable("income_records", {
   timestamp: int("timestamp", { mode: "timestamp" }).notNull(),
   currency: text().notNull(),
   source: text().notNull(),
+  amount: real().notNull(),
+  type: text({ enum: ["spending", "income"] }).notNull(),
+  category: text(),
 });
 
 export const currenciesTable = sqliteTable("currencies", {

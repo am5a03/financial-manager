@@ -4,8 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 
 export const metadata: Metadata = {
-  title: "Income Calculator",
-  description: "Calculate your income",
+  title: "Financial Manager",
+  description: "Manage your income and spending",
 };
 
 export default function RootLayout({
