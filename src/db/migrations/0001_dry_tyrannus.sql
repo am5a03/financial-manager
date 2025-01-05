@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `fx_rates_baseCurrency_quoteCurrency_timestamp_unique` ON `fx_rates` (`base_currency`,`quote_currency`,`timestamp`);

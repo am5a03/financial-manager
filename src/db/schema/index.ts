@@ -1,4 +1,4 @@
-import { int, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { int, real, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 
 export const txRecords = sqliteTable("tx_records", {
   id: int().primaryKey({ autoIncrement: true }),
@@ -14,9 +14,13 @@ export const currencies = sqliteTable("currencies", {
   currency: text().notNull().unique(),
 });
 
-export const fxRates = sqliteTable("fx_rates", {
-  baseCurrency: text().notNull(),
-  quoteCurrency: text().notNull(),
-  rate: real().notNull(),
-  timestamp: int("timestamp", { mode: "timestamp" }).notNull(),
-});
+export const fxRates = sqliteTable(
+  "fx_rates",
+  {
+    baseCurrency: text().notNull(),
+    quoteCurrency: text().notNull(),
+    rate: real().notNull(),
+    timestamp: int("timestamp", { mode: "timestamp" }).notNull(),
+  },
+  (t) => [unique().on(t.baseCurrency, t.quoteCurrency, t.timestamp)],
+);

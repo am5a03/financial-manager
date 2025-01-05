@@ -1,9 +1,16 @@
-import {SubmitTransaction, submitTransaction} from "@/actions/submitTransaction";
+import {
+  SubmitTransaction,
+  submitTransaction,
+} from "@/actions/submitTransaction";
 import { router } from "../trpc";
 import { publicProcedure } from "../trpc";
+import { fetchFxRates, FetchFxRates } from "@/actions/fetchFxRates";
 
 export const appRouter = router({
-  submitTransaction: publicProcedure.input(SubmitTransaction).mutation(submitTransaction),
+  submitTransaction: publicProcedure
+    .input(SubmitTransaction)
+    .mutation(submitTransaction),
+  fetchFxRates: publicProcedure.input(FetchFxRates).mutation(fetchFxRates),
 });
 
 // Export type router type signature,

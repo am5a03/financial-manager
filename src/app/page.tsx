@@ -24,6 +24,12 @@ export default function Home() {
         >
           View Records
         </Link>
+        <Link
+          href="/manage/fx"
+          className="bg-green-500 text-white px-6 py-3 rounded shadow"
+        >
+          Manage FX Rates
+        </Link>
       </div>
     </div>
   );

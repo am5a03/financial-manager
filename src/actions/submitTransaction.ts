@@ -16,12 +16,16 @@ export const submitTransaction = async ({
   input: { date, currency, amount, type },
 }: Action<SubmitTransaction>): Promise<void> => {
   console.log(date, currency, amount, type);
-  db.insert(txRecords).values({
-    timestamp: date,
-    source: "test",
-    currency,
-    amount,
-    type: "spending",
-    category: "",
-  });
+  const result = await db
+    .insert(txRecords)
+    .values({
+      timestamp: date,
+      source: "test",
+      currency,
+      amount,
+      type: "spending",
+      category: "",
+    })
+    .returning();
+  console.log(result);
 };
