@@ -1,6 +1,6 @@
 import { int, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const incomeRecordsTable = sqliteTable("income_records", {
+export const txRecords = sqliteTable("tx_records", {
   id: int().primaryKey({ autoIncrement: true }),
   timestamp: int("timestamp", { mode: "timestamp" }).notNull(),
   currency: text().notNull(),
@@ -10,11 +10,11 @@ export const incomeRecordsTable = sqliteTable("income_records", {
   category: text(),
 });
 
-export const currenciesTable = sqliteTable("currencies", {
+export const currencies = sqliteTable("currencies", {
   currency: text().notNull().unique(),
 });
 
-export const exchangeRatesTable = sqliteTable("exchange_rates", {
+export const fxRates = sqliteTable("fx_rates", {
   baseCurrency: text().notNull(),
   quoteCurrency: text().notNull(),
   rate: real().notNull(),

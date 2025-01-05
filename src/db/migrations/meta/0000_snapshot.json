@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "2a01d705-beec-4745-b79e-663d69faf54c",
+  "id": "bdae4c44-98c9-439d-a13d-ca2937555600",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "currencies": {
@@ -29,8 +29,8 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
-    "exchange_rates": {
-      "name": "exchange_rates",
+    "fx_rates": {
+      "name": "fx_rates",
       "columns": {
         "base_currency": {
           "name": "base_currency",
@@ -67,8 +67,8 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
-    "income_records": {
-      "name": "income_records",
+    "tx_records": {
+      "name": "tx_records",
       "columns": {
         "id": {
           "name": "id",
