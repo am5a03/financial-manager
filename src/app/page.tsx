@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/ui/ModeToggle";
 import Image from "next/image";
 import Link from "next/link";
 

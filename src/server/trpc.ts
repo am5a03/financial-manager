@@ -1,11 +1,12 @@
 import { initTRPC } from "@trpc/server";
 import type { Context } from "./context";
+import { transformer } from "@/trpc/shared";
 
 /**
  * Initialization of tRPC backend
  * Should be done only once per backend!
  */
-const t = initTRPC.context<Context>().create();
+const t = initTRPC.context<Context>().create({ transformer });
 
 /**
  * Export reusable router and procedure helpers

@@ -3,12 +3,15 @@ import { headers } from "next/headers";
 import { AsyncLocalStorage } from "node:async_hooks";
 
 // @ts-expect-error
-export const getHeaders = () => Object.fromEntries(new Headers(headers()));
+export const getHeaders = async () => {
+  const headersList = await headers();
+  return Object.fromEntries(headersList.entries());
+};
 
 /// begin generic
 export const getGenericContext = async () => {
   return {
-    headers: getHeaders(),
+    headers: await getHeaders(),
   };
 };
 
