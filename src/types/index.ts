@@ -1,6 +1,6 @@
 export enum TransactionType {
-  Spending = "Spending",
-  Income = "Income",
+  Spending = "spending",
+  Income = "income",
 }
 
 export type ApiBankOfCanadaResponse = {

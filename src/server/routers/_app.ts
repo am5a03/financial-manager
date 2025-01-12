@@ -9,6 +9,7 @@ import {
   submitTransactionBatch,
   SubmitTransactionBatch,
 } from "@/actions/submitTransactionBatch";
+import { getTransactions, GetTransactions } from "@/actions/getTransactions";
 
 export const appRouter = router({
   submitTransaction: publicProcedure
@@ -18,6 +19,9 @@ export const appRouter = router({
   submitTransactionBatch: publicProcedure
     .input(SubmitTransactionBatch)
     .mutation(submitTransactionBatch),
+  getTransactions: publicProcedure
+    .input(GetTransactions)
+    .query(getTransactions),
 });
 
 // Export type router type signature,
