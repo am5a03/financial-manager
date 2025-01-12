@@ -15,6 +15,13 @@
       "when": 1736053259752,
       "tag": "0001_dry_tyrannus",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1736647827674,
+      "tag": "0002_brown_dark_beast",
+      "breakpoints": true
     }
   ]
 }

@@ -19,6 +19,12 @@ export default function Home() {
           Create a Record
         </Link>
         <Link
+          href="/batch"
+          className="bg-blue-500 text-white px-6 py-3 rounded shadow"
+        >
+          Batch Upload
+        </Link>
+        <Link
           href="/view"
           className="bg-green-500 text-white px-6 py-3 rounded shadow"
         >

@@ -1,6 +1,6 @@
 "use client";
 import { DatePicker } from "@/components/ui/datepicker";
-import FormFeild from "@/components/ui/form/form-field";
+import FormField from "@/components/ui/form/form-field";
 import { trpc } from "@/trpc/client";
 import { TransactionType } from "@/types";
 
@@ -23,18 +23,18 @@ export default function CreateTransactionForm() {
       <h1 className="text-2xl font-bold mb-4">Create New Transaction Record</h1>
       <form onSubmit={onSubmit}>
         <div className="flex flex-col gap-4">
-          <FormFeild label="Date">
+          <FormField label="Date">
             <DatePicker />
-          </FormFeild>
-          <FormFeild label="Amount">
+          </FormField>
+          <FormField label="Amount">
             <input
               type="number"
               id="amount"
               // {...register("amount", { required: true })}
               className="border rounded px-2 py-1 flex-grow"
             />
-          </FormFeild>
-          <FormFeild label="Currency">
+          </FormField>
+          <FormField label="Currency">
             <select
               id="currency"
               // {...register("currency", { required: true })}
@@ -46,8 +46,8 @@ export default function CreateTransactionForm() {
                 </option>
               ))}
             </select>
-          </FormFeild>
-          <FormFeild label="Type">
+          </FormField>
+          <FormField label="Type">
             <select
               id="type"
               // {...register("currency", { required: true })}
@@ -59,7 +59,7 @@ export default function CreateTransactionForm() {
                 </option>
               ))}
             </select>
-          </FormFeild>
+          </FormField>
           <div className="flex justify-end gap-4">
             <button
               type="submit"
