@@ -6,5 +6,6 @@ export const getDbClient = () => {
   return drizzle(process.env.DB_FILE_NAME!, {
     schema,
     casing: "snake_case",
+    logger: true,
   });
 };

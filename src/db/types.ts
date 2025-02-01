@@ -3,6 +3,6 @@ import type { txRecords } from "./schema";
 export type TxRecord = typeof txRecords.$inferInsert;
 
 export type TxRecordExchangeRateAdjusted = TxRecord & {
-  amountInQuoteCurrency: unknown;
-  costInQuoteCurrency: unknown;
+  amountInQuoteCurrency: number;
+  costInQuoteCurrency: number;
 };

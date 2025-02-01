@@ -20,7 +20,7 @@ export const getTransactions = async ({
 }: Action<GetTransactions>): Promise<{
   txs: TxRecordExchangeRateAdjusted[];
 }> => {
-  const transactions = await db
+  const transactionsQuery = db
     .select({
       id: txRecords.id,
       currency: txRecords.currency,
@@ -48,9 +48,32 @@ export const getTransactions = async ({
           sql`strftime('%s', datetime(${txRecords.timestamp}, 'unixepoch', 'start of month'))`,
         ),
       ),
-    );
+    )
+    .$dynamic();
+  if (sources && sources.length > 0 && sources[0] !== "") {
+    transactionsQuery.where(inArray(txRecords.source, sources));
+  }
+
+  const transactions = await transactionsQuery;
+
+  const mappedTx = transactions.map((tx) => ({
+    id: tx.id,
+    currency: tx.currency,
+    timestamp: tx.timestamp,
+    source: tx.source,
+    amount: tx.amount,
+    amountInQuoteCurrency: (tx.amountInQuoteCurrency as number).toFixed(
+      2,
+    ) as unknown as number,
+    type: tx.type,
+    category: tx.category,
+    cost: tx.cost,
+    costInQuoteCurrency: (tx.costInQuoteCurrency as number).toFixed(
+      2,
+    ) as unknown as number,
+  }));
 
   return {
-    txs: transactions,
+    txs: mappedTx,
   };
 };

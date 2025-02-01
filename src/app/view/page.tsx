@@ -11,12 +11,27 @@ import {
 } from "@/components/ui/select";
 import { trpc } from "@/trpc/client";
 import type { TransactionType } from "@/types";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { format } from "date-fns";
 
 export default function Page() {
+  const [start, setStart] = useState<Date | undefined>();
+  const [end, setnEnd] = useState<Date | undefined>();
+  const [source, setSource] = useState<string>("");
+
   const { data: txRecords } = trpc.getTransactions.useQuery(
-    {},
+    {
+      sources: [source],
+    },
     {
       enabled: true,
     },
@@ -24,9 +39,7 @@ export default function Page() {
 
   const { data: sources } = trpc.getTxSources.useQuery();
 
-  const [start, setStart] = useState<Date | undefined>();
-  const [end, setnEnd] = useState<Date | undefined>();
-  const [source, setSource] = useState<string>();
+  console.log(txRecords);
 
   return (
     <div className="container mx-auto p-4">
@@ -50,6 +63,7 @@ export default function Page() {
           <Select
             onValueChange={(source) => {
               console.log(source);
+              setSource(source);
             }}
           >
             <SelectTrigger className="w-[180px]">
@@ -65,6 +79,34 @@ export default function Page() {
           </Select>
         </div>
       </form>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Date</TableHead>
+            <TableHead>Source</TableHead>
+            <TableHead>Currency</TableHead>
+            <TableHead>Amount</TableHead>
+            <TableHead>Amount (CAD)</TableHead>
+            <TableHead>Type</TableHead>
+            <TableHead>Cost</TableHead>
+            <TableHead>Cost (CAD)</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {txRecords?.txs.map((tx) => (
+            <TableRow key={tx.id}>
+              <TableCell>{format(tx.timestamp, "d-MMM-yyyy")}</TableCell>
+              <TableCell>{tx.source}</TableCell>
+              <TableCell>{tx.currency}</TableCell>
+              <TableCell>{tx.amount}</TableCell>
+              <TableCell>{tx.amountInQuoteCurrency as number}</TableCell>
+              <TableCell>{tx.type}</TableCell>
+              <TableCell>{tx.cost}</TableCell>
+              <TableCell>{tx.costInQuoteCurrency as number}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }
