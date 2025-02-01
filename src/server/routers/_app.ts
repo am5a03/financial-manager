@@ -14,6 +14,7 @@ import {
   submitTransactionCustomBatch,
   SubmitTransactionCustomBatch,
 } from "@/actions/submitTransactionCustomBatch";
+import { getTxSources } from "@/actions/getTxSources";
 
 export const appRouter = router({
   submitTransaction: publicProcedure
@@ -29,6 +30,7 @@ export const appRouter = router({
   getTransactions: publicProcedure
     .input(GetTransactions)
     .query(getTransactions),
+  getTxSources: publicProcedure.query(getTxSources),
 });
 
 // Export type router type signature,

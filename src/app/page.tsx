@@ -22,7 +22,13 @@ export default function Home() {
           href="/batch"
           className="bg-blue-500 text-white px-6 py-3 rounded shadow"
         >
-          Batch Upload
+          Batch Upload (File)
+        </Link>
+        <Link
+          href="/batchCustom"
+          className="bg-blue-500 text-white px-6 py-3 rounded shadow"
+        >
+          Batch Upload (Input)
         </Link>
         <Link
           href="/view"

@@ -24,7 +24,7 @@ export default function CreateTransactionForm() {
       <form onSubmit={onSubmit}>
         <div className="flex flex-col gap-4">
           <FormField label="Date">
-            <DatePicker />
+            <DatePicker onDateChanged={(d) => {}} />
           </FormField>
           <FormField label="Amount">
             <input

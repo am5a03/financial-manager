@@ -22,10 +22,10 @@ export default function Page() {
       <form onSubmit={onSubmit}>
         <div className="flex flex-col gap-4">
           <FormFeild label="Start Date">
-            <DatePicker />
+            <DatePicker onDateChanged={(d) => {}} />
           </FormFeild>
           <FormFeild label="End Date">
-            <DatePicker />
+            <DatePicker onDateChanged={(d) => {}} />
           </FormFeild>
           <div className="flex gap-4">
             <button
