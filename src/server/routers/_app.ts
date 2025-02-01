@@ -10,6 +10,10 @@ import {
   SubmitTransactionBatch,
 } from "@/actions/submitTransactionBatch";
 import { getTransactions, GetTransactions } from "@/actions/getTransactions";
+import {
+  submitTransactionCustomBatch,
+  SubmitTransactionCustomBatch,
+} from "@/actions/submitTransactionCustomBatch";
 
 export const appRouter = router({
   submitTransaction: publicProcedure
@@ -19,6 +23,9 @@ export const appRouter = router({
   submitTransactionBatch: publicProcedure
     .input(SubmitTransactionBatch)
     .mutation(submitTransactionBatch),
+  submitTransactionCustomBatch: publicProcedure
+    .input(SubmitTransactionCustomBatch)
+    .mutation(submitTransactionCustomBatch),
   getTransactions: publicProcedure
     .input(GetTransactions)
     .query(getTransactions),

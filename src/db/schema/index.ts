@@ -10,8 +10,11 @@ export const txRecords = sqliteTable(
     amount: real().notNull(),
     type: text({ enum: ["spending", "income"] }).notNull(),
     category: text(),
+    cost: real().notNull(),
   },
-  (t) => [unique().on(t.timestamp, t.currency, t.source, t.type, t.category)],
+  (t) => [
+    unique().on(t.timestamp, t.currency, t.source, t.type, t.category, t.cost),
+  ],
 );
 
 export const currencies = sqliteTable("currencies", {

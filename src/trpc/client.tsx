@@ -15,7 +15,7 @@ import {
 } from "@trpc/react-query";
 import { useState } from "react";
 import { getBaseUrl, getQueryClient, transformer } from "./shared";
-import { AnyTRPCRouter } from "@trpc/server";
+import type { AnyTRPCRouter } from "@trpc/server";
 
 const createClientLinks = (link: TRPCLink<AnyTRPCRouter>) => [
   loggerLink({

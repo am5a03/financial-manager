@@ -5,22 +5,18 @@ import { txRecords } from "@/db/schema";
 import type { TxRecord } from "@/db/types";
 import { parse as parseDate } from "date-fns";
 
-export type SubmitTransactionBatch = typeof SubmitTransactionBatch;
-export const SubmitTransactionBatch = z.object({
+export type SubmitTransactionCustomBatch = typeof SubmitTransactionCustomBatch;
+export const SubmitTransactionCustomBatch = z.object({
   csv: z.string(),
 });
 
-export const submitTransactionBatch = async ({
+export const submitTransactionCustomBatch = async ({
   ctx: { db },
   input: { csv },
-}: Action<SubmitTransactionBatch>): Promise<void> => {
+}: Action<SubmitTransactionCustomBatch>): Promise<void> => {
   console.log(csv);
-  const base64Data = csv.split(",")[1]; // Remove "data:<mime-type>;base64,"
-  const buffer = Buffer.from(base64Data, "base64");
-  // Convert buffer to string
-  const fileContent = buffer.toString("utf-8");
 
-  const records = parse(fileContent.trim(), {
+  const records = parse(csv, {
     columns: true,
     skip_empty_lines: true,
     cast: (value, context) => {
@@ -28,9 +24,12 @@ export const submitTransactionBatch = async ({
         return value;
       }
       switch (context.index) {
-        case 1:
+        case 1: {
+          // Date column
+          // const result = parseDate(value, "d/M/yyyy", new Date());
           return parseDate(value, "d/M/yyyy", new Date());
-        case 3:
+        }
+        case 3: // amount
         case 6: // cost
           return value === "" ? 0 : Number.parseFloat(value);
         default:
@@ -39,8 +38,8 @@ export const submitTransactionBatch = async ({
     },
   }) as TxRecord[];
 
-  console.log(records);
-
+  // console.log(records);
+  //
   await Promise.all(
     records.map((r) =>
       db

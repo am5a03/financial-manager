@@ -1,0 +1,1 @@
+ALTER TABLE `tx_records` ADD `cost` real NOT NULL;

@@ -22,6 +22,20 @@
       "when": 1736647827674,
       "tag": "0002_brown_dark_beast",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1738367974829,
+      "tag": "0003_outstanding_northstar",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1738368142213,
+      "tag": "0004_sturdy_cable",
+      "breakpoints": true
     }
   ]
 }
